@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Word Counter</title>
+    <style>
+        .highlight { background-color: yellow; }
+    </style>
+    <script>
+        function updateWordCount() {
+            const text = document.getElementById("textarea").value;
+            const words = text.trim().split(/\s+/);
+            const wordCount = words.filter(word => word).length;
+            document.getElementById("wordCount").textContent = "Word Count: " + wordCount;
+
+            const wordMap = {};
+            const highlightedText = words.map(word => {
+                const lowerWord = word.toLowerCase();
+                wordMap[lowerWord] = (wordMap[lowerWord] || 0) + 1;
+                return wordMap[lowerWord] > 1 ? `<span class="highlight">${word}</span>` : word;
+            }).join(' ');
+
+            document.getElementById("highlightedText").innerHTML = highlightedText;
+        }
+    </script>
+</head>
+<body>
+    <h1>Word Counter</h1>
+    <textarea id="textarea" onkeyup="updateWordCount()" rows="4" cols="50" placeholder="Type your text here..."></textarea>
+    <p id="wordCount">Word Count: 0</p>
+    <p>Highlighted repeated words:</p>
+    <p id="highlightedText"></p>
+</body>
+</html>
