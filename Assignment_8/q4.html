@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Show/Hide Password Toggle</title>
+    <script>
+        function togglePassword() {
+            const passwordField = document.getElementById("password");
+            const checkbox = document.getElementById("showPassword");
+            if (checkbox.checked) {
+                passwordField.type = "text";
+            } else {
+                passwordField.type = "password";
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Show/Hide Password Toggle</h1>
+    <label for="password">Password:</label>
+    <input type="password" id="password">
+    <input type="checkbox" id="showPassword" onclick="togglePassword()"> Show Password
+</body>
+</html>
