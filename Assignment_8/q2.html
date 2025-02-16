@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sign-Up Form with Live Feedback</title>
+    <style>
+        .valid {
+            border: 4px solid green;
+        }
+        .invalid {
+            border: 4px solid red;
+        }
+        .feedback {
+            color: red;
+        }
+    </style>
+    <script>
+        function validateName() {
+            const name = document.getElementById("name");
+            const nameFeedback = document.getElementById("nameFeedback");
+            if (name.value.trim() === "") {
+                name.classList.add("invalid");
+                name.classList.remove("valid");
+                nameFeedback.textContent = "Name must not be empty.";
+            } else {
+                name.classList.add("valid");
+                name.classList.remove("invalid");
+                nameFeedback.textContent = "";
+            }
+        }
+
+        function validateEmail() {
+            const email = document.getElementById("email");
+            const emailFeedback = document.getElementById("emailFeedback");
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email.value)) {
+                email.classList.add("invalid");
+                email.classList.remove("valid");
+                emailFeedback.textContent = "Email must be a valid format.";
+            } else {
+                email.classList.add("valid");
+                email.classList.remove("invalid");
+                emailFeedback.textContent = "";
+            }
+        }
+
+        function validatePassword() {
+            const password = document.getElementById("password");
+            const passwordFeedback = document.getElementById("passwordFeedback");
+            const passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[\W_])[A-Za-z\d\W_]{8,}$/;
+            if (!passwordRegex.test(password.value)) {
+                password.classList.add("invalid");
+                password.classList.remove("valid");
+                passwordFeedback.textContent = "Password must be at least 8 characters with 1 uppercase, 1 number & 1 symbol.";
+            } else {
+                password.classList.add("valid");
+                password.classList.remove("invalid");
+                passwordFeedback.textContent = "";
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Sign-Up Form with Live Feedback</h1>
+    <form>
+        <label for="name">Name:</label>
+        <input type="text" id="name" onkeyup="validateName()">
+        <div id="nameFeedback" class="feedback"></div>
+        <br>
+        <label for="email">Email:</label>
+        <input type="email" id="email" onkeyup="validateEmail()">
+        <div id="emailFeedback" class="feedback"></div>
+        <br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" onkeyup="validatePassword()">
+        <div id="passwordFeedback" class="feedback"></div>
+        <br>
+        <button type="submit">Sign Up</button>
+    </form>
+</body>
+</html>
